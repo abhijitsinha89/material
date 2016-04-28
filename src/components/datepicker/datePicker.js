@@ -76,7 +76,9 @@
       scope: {
         minDate: '=mdMinDate',
         maxDate: '=mdMaxDate',
-        placeholder: '@mdPlaceholder'
+        placeholder: '@mdPlaceholder',
+        source:     '@source',
+        format:     '@format'
       },
       controller: DatePickerCtrl,
       controllerAs: 'ctrl',
@@ -214,7 +216,7 @@
     var self = this;
     ngModelCtrl.$render = function() {
       self.date = self.ngModelCtrl.$viewValue;
-      self.inputElement.value = self.dateLocale.formatDate(self.date);
+      self.inputElement.value = self.dateLocale.formatDate(self.date, {format: event.targetScope.format, source : event.targetScope.source});
       self.resizeInputElement();
     };
   };
